@@ -1,4 +1,3 @@
 #!/bin/bash
-cd /appDeploy
-npm install
-chmod +x /appDeploy/scripts/start_server.sh
+nomeApp="nomeApp"
+sudo supervisorctl -c /etc/supervisor/supervisord.conf stop $nomeApp || true

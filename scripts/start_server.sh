@@ -1,9 +1,11 @@
 #!/bin/bash
+nomeApp="nomeApp"
+cd /appDeploy
 
-# Garante que o serviço principal esteja rodando
-sudo service supervisor start
+# Instala dependências e gera os arquivos de produção
+npm install
+npm run build
 
-# Recarrega configurações e reinicia o app
-sudo supervisorctl reread
-sudo supervisorctl update
-sudo supervisorctl restart nomeApp
+# Garante que o supervisor está ativo e reinicia o app
+sudo systemctl start supervisor
+sudo supervisorctl -c /etc/supervisor/supervisord.conf restart $nomeApp
